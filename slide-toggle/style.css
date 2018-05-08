@@ -9,10 +9,10 @@ ul {
 ul.hide {
     max-height: 0px;
     overflow-y: hidden;
-    transition: max-height 0.7s ease-in-out;
+    transition: max-height 0.5s linear;
     height: auto;
 }
 
 ul.show {
-    max-height: 200px;
+    max-height: 100px;
 }
