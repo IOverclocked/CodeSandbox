@@ -2,17 +2,21 @@
 var btn = document.querySelector('button');
 var ul = document.querySelector('ul');
 var controlToggle = true;
+
+function slideToggle(boolControl, strText) {
+
+    (strText === "show") ? ul.classList.remove('show') : ul.classList.add('show');
+    controlToggle = boolControl;
+    this.innerText = strText;
+
+}
+
 btn.addEventListener('click', function() {
 
     if(controlToggle) {
-        ul.classList.add('show');
-        controlToggle = false;
-        this.innerText = "hide";
-        console.log("bylem");
+        slideToggle(false, 'hide');
     } else {
-        ul.classList.remove('show');
-        controlToggle = true;
-        this.innerText = "show";
-        console.log("jestem");
+        slideToggle(true, 'show');
     }
+    
 })
