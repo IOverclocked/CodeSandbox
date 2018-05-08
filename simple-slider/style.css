@@ -1,0 +1,20 @@
+.box {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 400px;
+    height: 400px;
+
+    animation-name: slider;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+}
+
+@keyframes slider {
+    0% {background: #FF0043;}
+    25% {background: #A2A2A2;}
+    50% {background: #00FF1B;}
+    75% {background: #0067FF;}
+    100% {background: #B800FF;}
+}
