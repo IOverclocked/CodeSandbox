@@ -1,0 +1,18 @@
+button {
+
+}
+
+ul {
+    background-color: #E983A5;
+}
+
+ul.hide {
+    max-height: 0px;
+    overflow-y: hidden;
+    transition: max-height 0.7s ease-in-out;
+    height: auto;
+}
+
+ul.show {
+    max-height: 200px;
+}
