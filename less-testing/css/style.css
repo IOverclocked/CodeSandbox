@@ -1,8 +1,22 @@
 body {
   font-size: 16px;
+  color: #fff;
   font-family: Tahoma;
-  background-color: #A70E0E;
+  background-color: #191919;
 }
 h1 {
+  font-size: 3em;
+  background-color: #721DF4;
+}
+p {
   font-size: 1em;
+  line-height: 2em;
+}
+.btn,
+.primary-btn {
+  padding: 10px 15px;
+  color: #fff;
+}
+.primary-btn {
+  background-color: #721DF4;
 }
