@@ -5,7 +5,8 @@
 @font-size: 16px;
 @font-color: #fff;
 @line-height: 1em + 1em;
-@primary-color: #721DF4;
+@primary-color: #1DF4BA;
+@border-color: #FFCB00;
 
 body {
     font-size: @font-size;
@@ -24,6 +25,17 @@ p {
     line-height: @line-height
 }
 
+.border-radius(@radius) {
+    border-radius: @radius;
+}
+
+.border {
+    border: 1px solid @font-color;
+    border-top: 2px solid @border-color;
+    border-right: 2px solid @border-color;
+    .border-radius(1em);
+}
+
 .btn {
     padding: 10px 15px;
     color: @font-color;
@@ -31,4 +43,5 @@ p {
 
 .primary-btn:extend(.btn) {
     background-color: @primary-color;
+    .border
 }
