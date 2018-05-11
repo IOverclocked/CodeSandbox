@@ -43,3 +43,12 @@ test('Admin should be in username', () => {
     username = ['john', 'keren', 'admin'];
     expect(username).toContain('admin');
 })
+
+// Async fetch API test promise
+test('User fetched name should be Leanne Graham', () => {
+    expect.assertions(1);
+    return functions.fetchUser()
+    .then(data => {
+        expect(data.name).toEqual('Leanne Graham');
+    })
+})
