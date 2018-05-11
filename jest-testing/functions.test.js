@@ -16,6 +16,7 @@ test("Should be false", () => {
     expect(functions.checkValue(null)).toBeFalsy()
 })
 
+//obj test
 test("Should be user Michał Osiatycki", () => {
     expect(functions.user()).toEqual({
         firstname: "Michał",
@@ -31,3 +32,14 @@ test("Should be under 1600", () => {
     expect(num1 + num2).toBeLessThen(1600);
 })
 */
+
+//regex test
+test('There is not I in team', () => {
+    expect('team').not.toMatch(/I/i);
+})
+
+//array test
+test('Admin should be in username', () => {
+    username = ['john', 'keren', 'admin'];
+    expect(username).toContain('admin');
+})
