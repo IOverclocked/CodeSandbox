@@ -67,10 +67,6 @@ class App extends Component {
         this.getTodos();
     }
 
-    componentWillMount() {
-        this.getTodos();
-    }
-
     handleAddProject = (newProject) => {
         this.setState({projects: [...this.state.projects, newProject]})
     }
