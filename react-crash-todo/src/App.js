@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import Todos from './components/Todos.jsx';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Todos from './components/Todos';
 import TodoAdd from './components/TodoAdd';
-import Header from './components/layout/Header.jsx';
+import Header from './components/layout/Header';
+import About from './components/pages/About';
 import uuid from 'uuid';
 
 import './App.css';
@@ -57,14 +59,20 @@ class App extends Component {
         console.table(...this.state.todos);
 
         return (
-            <div className="App">
-                <div className="container">
-
+            <Router>
+                <div className="App">
+                    <div className="container">
+                        <Header />
+                        <Route exact path="/" render={props => (
+                            <React.Fragment>
+                                <TodoAdd addTodo={this.addTodo} />
+                                <Todos todos={this.state.todos} toggleTodo={this.toggleTodo} deleteTodo={this.deleteTodo} />
+                            </React.Fragment>
+                        )} />
+                        <Route path="/about" component={About} />
+                    </div>
                 </div>
-                <Header />
-                <TodoAdd addTodo={this.addTodo} />
-                <Todos todos={this.state.todos} toggleTodo={this.toggleTodo} deleteTodo={this.deleteTodo} />
-            </div>
+            </Router>
         );
     }
 }
