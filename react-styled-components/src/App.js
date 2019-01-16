@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes, createGlobalStyle } from 'styled-components';
 import logo from './logo.svg';
 
+const GlobalStyle = createGlobalStyle`
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+`
 const AppContainer = styled.div`
     text-align: center;
 `
 const AppHeader = styled.header`
-    background-color: #282c34;
+    background-color: ${({ isDark }) => isDark ? '#282c34' : '#ccc'};
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -31,11 +42,14 @@ const AppLogo = styled.img`
 class App extends Component {
     render() {
         return (
-            <AppContainer>
-                <AppHeader>
-                    <AppLogo src={logo} alt="logo" />
-                </AppHeader>
-            </AppContainer>
+            <div>
+                <GlobalStyle />
+                <AppContainer>
+                    <AppHeader isDark>
+                        <AppLogo src={logo} alt="logo" />
+                    </AppHeader>
+                </AppContainer>
+            </div>
         );
     }
 }
