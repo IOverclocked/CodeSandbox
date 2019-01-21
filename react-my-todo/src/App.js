@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
+import TodoHeader from './layout/TodoHeader';
 import TodoList from './layout/TodoList';
+
 
 const GlobalStyled = createGlobalStyle`
     body {
         background-color: #2c3643;
+        margin: 0px;
+        padding: 0px;
 
         *, *::before, *::after {
             box-sizing: border-box;
@@ -28,6 +32,7 @@ class App extends Component {
             <>
                 <GlobalStyled />
                 <AppContainer>
+                    <TodoHeader />
                     <TodoList />
                 </AppContainer>
             </>
