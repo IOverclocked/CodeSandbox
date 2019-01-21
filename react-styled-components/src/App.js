@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import styled, { keyframes, createGlobalStyle } from 'styled-components';
+import styled, { keyframes, createGlobalStyle, ThemeProvider } from 'styled-components';
 import logo from './logo.svg';
+import theme from './theme';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -17,14 +18,19 @@ const AppContainer = styled.div`
     text-align: center;
 `
 const AppHeader = styled.header`
-    background-color: ${({ isDark }) => isDark ? '#282c34' : '#ccc'};
+    background-color: ${({ isDark, theme }) => isDark ? theme.colors.dark : theme.colors.gray};
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
+    transition: 0.3s ease;
+
+    ${({ theme }) => theme.media.desktop} {
+        background: ${({ theme }) => theme.colors.white}
+    }
 `
 const animeAppLogoSpin = keyframes`
     from {
@@ -42,14 +48,16 @@ const AppLogo = styled.img`
 class App extends Component {
     render() {
         return (
-            <div>
+            <ThemeProvider theme={theme}>
+            <>
                 <GlobalStyle />
                 <AppContainer>
                     <AppHeader isDark>
                         <AppLogo src={logo} alt="logo" />
                     </AppHeader>
                 </AppContainer>
-            </div>
+            </>
+            </ThemeProvider>
         );
     }
 }
