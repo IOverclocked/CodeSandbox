@@ -5,20 +5,19 @@ const HeaderContainer = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3d4754;
-    width: 50vw;
-    height: 20vh;
+    background-color: ${({ theme }) => theme.colors.littlePrimary};
+    height: 15vh;
     margin: 0 auto;
-    border: 1px solid #ffc640;
+    border: 1px solid ${({ theme }) => theme.colors.gold};
 `
 
 const HeaderTitle = styled.h2`
     width: 100%;
-    font-size: 2em;
-    color: #ffc640;
-    margin-left: 1em;
+    font-size: .7em;
+    color: ${({ theme }) => theme.colors.gold};
+    margin-left: .5em;
     font-weight: 300;
-    text-shadow: 5px 5px 5px #ff616c;
+    text-shadow: .1em .1em .1em ${({ theme }) => theme.colors.pink};
 `
 
 const HeaderTitlePart = styled.span`

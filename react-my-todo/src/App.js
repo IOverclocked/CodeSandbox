@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import TodoHeader from './layout/TodoHeader';
 import TodoList from './layout/TodoList';
+import theme from './theme';
 
 
 const GlobalStyled = createGlobalStyle`
     body {
-        background-color: #2c3643;
+    background-color: ${({ theme }) => theme.colors.primary};
         margin: 0px;
         padding: 0px;
 
@@ -29,13 +30,15 @@ const AppContainer = styled.div`
 class App extends Component {
     render() {
         return (
-            <>
-                <GlobalStyled />
-                <AppContainer>
-                    <TodoHeader />
-                    <TodoList />
-                </AppContainer>
-            </>
+            <ThemeProvider theme={theme}>
+                <>
+                    <GlobalStyled />
+                    <AppContainer>
+                        <TodoHeader />
+                        <TodoList />
+                    </AppContainer>
+                </>
+            </ThemeProvider>
         );
     }
 }
