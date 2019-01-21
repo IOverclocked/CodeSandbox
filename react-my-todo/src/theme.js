@@ -6,6 +6,7 @@ const theme = {
         littlePrimary: '#3d4754',
         gold: '#ffc640',
         pink: '#ff616c',
+        little: '#108796'
     },
 }
 
