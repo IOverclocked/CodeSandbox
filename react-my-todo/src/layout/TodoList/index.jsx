@@ -29,7 +29,7 @@ export class TodoList extends Component {
                 id: 3,
                 title: 'Task3',
                 description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, eius.',
-                isDone: false,
+                isDone: true,
             }]
         }
     }
@@ -39,12 +39,25 @@ export class TodoList extends Component {
             return (
                 <TodoItem
                     key={item.id}
+                    id={item.id}
                     title={item.title}
                     description={item.description}
-                    isDone={item.isDone}>
+                    isDone={item.isDone}
+                    onChangeDone={this.onChangeDone}>
                 </TodoItem>
             )
         })
+    }
+
+    onChangeDone = (id) => {
+        let newListItems = this.state.listItems.map(item => {
+            if (item.id === id) {
+                item.isDone = !item.isDone;
+            }
+            return item;
+        })
+        this.setState({ listItems: newListItems })
+        console.log(this.state.listItems);
     }
 
     render() {

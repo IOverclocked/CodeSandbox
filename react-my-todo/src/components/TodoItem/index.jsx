@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import styled from 'styled-components';
+import Checkbox from '../Checkbox'
+import styled from 'styled-components'
 
 const ListItemContainer = styled.li`
     display: flex;
@@ -24,20 +25,22 @@ const ListItemDescription = styled.div`
     color:  ${({ theme }) => theme.colors.little};
     border-right: 2px solid ${({ theme }) => theme.colors.pink};
 `
-const Checkbox = styled.input`
 
-`
 export class TodoItem extends Component {
     render() {
+        const { id, title, description, isDone } = this.props;
         return (
             <ListItemContainer>
                 <ListItemTitle>
-                    {this.props.title}
+                    {title}
                 </ListItemTitle>
                 <ListItemDescription>
-                    {this.props.description}
+                    {description}
                 </ListItemDescription>
-                <Checkbox type="checkbox" />
+                <Checkbox
+                    checked={isDone}
+                    onChange={this.props.onChangeDone.bind(this, id)}
+                />
             </ListItemContainer>
         )
     }
