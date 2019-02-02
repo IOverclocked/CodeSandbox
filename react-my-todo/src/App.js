@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import TodoHeader from './layout/TodoHeader';
+import TodoAdd from './layout/TodoAdd';
 import TodoList from './layout/TodoList';
 import theme from './theme';
 
@@ -33,10 +34,15 @@ class App extends Component {
             <ThemeProvider theme={theme}>
                 <>
                     <GlobalStyled />
-                    <AppContainer>
-                        <TodoHeader />
-                        <TodoList />
-                    </AppContainer>
+                    <Router>
+                        <>
+                            <TodoHeader />
+                            <AppContainer>
+                                <Route exact path='/' component={TodoList} />
+                                <Route path='/add' component={TodoAdd} />
+                            </AppContainer>
+                        </>
+                    </Router>
                 </>
             </ThemeProvider>
         );
