@@ -11,9 +11,10 @@ export class index extends Component {
 
     render() {
         return (
-            <div>
-                ELO Siema
-            </div>
+            <form>
+                <input type="text" name="title" />
+                <input type="text" name="description" />
+            </form>
         )
     }
 }

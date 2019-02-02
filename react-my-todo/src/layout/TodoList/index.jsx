@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { HashRouter, Route, Link, Switch, NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 import TodoItem from '../../components/TodoItem';
 
@@ -8,8 +7,6 @@ const TodoListContainer = styled.ul`
     padding: 0;
     list-style-type: none;
 `
-
-
 export class TodoList extends Component {
     constructor(props) {
         super(props)

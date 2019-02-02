@@ -15,8 +15,8 @@ const Container = styled.label`
     width: 2em;
     height: 2em;
     border-radius: 0 3px 3px 0;
-    background: ${({ theme, checked }) => checked ? theme.colors.pink : theme.colors.gold};
-    ${HiddenCheckbox}:focus + &{
+    background: ${({ checked, theme }) => checked ? theme.colors.pink : theme.colors.gold};
+    ${HiddenCheckbox}:focus + & {
         box-shadow: 0 0 0 2px ${({ theme, checked }) => checked ? theme.colors.gold : theme.colors.pink};
     };
     ${Icon} {

@@ -69,10 +69,10 @@ export class TodoHeader extends Component {
                     </StyledLinkTitle>
                 </HeaderTitle>
 
-
                 <ButtonAdd>
                     <StyledButtonLink to={'/add'}>Add</StyledButtonLink>
                 </ButtonAdd>
+
             </HeaderContainer>
         )
     }
