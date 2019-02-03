@@ -12,9 +12,10 @@ const Icon = styled.svg`
     stroke-width: 3px;
 `
 const Container = styled.label`
+    margin: 0 .2em;
     width: 2em;
     height: 2em;
-    border-radius: 0 3px 3px 0;
+    border-radius: 3px;
     background: ${({ checked, theme }) => checked ? theme.colors.pink : theme.colors.gold};
     ${HiddenCheckbox}:focus + & {
         box-shadow: 0 0 0 2px ${({ theme, checked }) => checked ? theme.colors.gold : theme.colors.pink};

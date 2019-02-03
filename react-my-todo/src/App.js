@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TodoHeader from './layout/TodoHeader';
 import TodoAdd from './layout/TodoAdd';
 import TodoList from './layout/TodoList';

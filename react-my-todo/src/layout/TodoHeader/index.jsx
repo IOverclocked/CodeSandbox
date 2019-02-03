@@ -13,7 +13,7 @@ const HeaderContainer = styled.header`
 `
 const HeaderTitle = styled.h2`
     width: 100%;
-    font-size: .7em;
+    font-size: 1.5em;
     color: ${({ theme }) => theme.colors.gold};
     margin-left: .5em;
     font-weight: 300;
