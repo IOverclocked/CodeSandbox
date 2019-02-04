@@ -29,7 +29,7 @@ const ListItemDescription = styled.div`
 
 export class TodoItem extends Component {
     render() {
-        const { id, title, description, isDone } = this.props;
+        const { id, title, discription, isDone } = this.props;
         return (
             <ListItemContainer>
                 <ListItemTitle>
@@ -40,7 +40,7 @@ export class TodoItem extends Component {
                     />
                 </ListItemTitle>
                 <ListItemDescription>
-                    {description}
+                    {discription}
                 </ListItemDescription>
             </ListItemContainer>
         )
