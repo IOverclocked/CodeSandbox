@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from 'react';
+import styled from 'styled-components';
 import TodoItem from '../../components/TodoItem';
+import TodoAdd from '../../components/TodoAdd';
 
 const TodoListContainer = styled.ul`
     margin: 0;
@@ -31,6 +32,17 @@ export class TodoList extends Component {
         }
     }
 
+    onChangeDone = (id) => {
+        let newListItems = this.state.listItems.map(item => {
+            if (item.id === id) {
+                item.isDone = !item.isDone;
+            }
+            return item;
+        })
+        this.setState({ listItems: newListItems })
+        console.log(this.state.listItems);
+    }
+
     createTodoList = () => {
         return this.state.listItems.map(item => {
             return (
@@ -45,23 +57,14 @@ export class TodoList extends Component {
             )
         })
     }
-
-    onChangeDone = (id) => {
-        let newListItems = this.state.listItems.map(item => {
-            if (item.id === id) {
-                item.isDone = !item.isDone;
-            }
-            return item;
-        })
-        this.setState({ listItems: newListItems })
-        console.log(this.state.listItems);
-    }
-
     render() {
         return (
-            <TodoListContainer>
-                {this.createTodoList()}
-            </TodoListContainer>
+            <>
+                <TodoAdd />
+                <TodoListContainer>
+                    {this.createTodoList()}
+                </TodoListContainer>
+            </>
         )
     }
 }
