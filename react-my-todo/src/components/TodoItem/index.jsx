@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Checkbox from '../Checkbox'
 import styled from 'styled-components'
 
@@ -27,24 +27,19 @@ const ListItemDescription = styled.div`
     border-right: 2px solid ${({ theme }) => theme.colors.pink};
 `
 
-export class TodoItem extends Component {
-    render() {
-        const { id, title, discription, isDone } = this.props;
-        return (
-            <ListItemContainer>
-                <ListItemTitle>
-                    {title}
-                    <Checkbox
-                        checked={isDone}
-                        onChange={this.props.onChangeDone.bind(this, id)}
-                    />
-                </ListItemTitle>
-                <ListItemDescription>
-                    {discription}
-                </ListItemDescription>
-            </ListItemContainer>
-        )
-    }
-}
+const TodoItem = ({ id, title, discription, isDone, onChangeDone }) => (
+    <ListItemContainer>
+        <ListItemTitle>
+            {title}
+            <Checkbox
+                checked={isDone}
+                onChange={onChangeDone.bind(this, id)}
+            />
+        </ListItemTitle>
+        <ListItemDescription>
+            {discription}
+        </ListItemDescription>
+    </ListItemContainer>
+)
 
 export default TodoItem

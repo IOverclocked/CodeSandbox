@@ -8,7 +8,7 @@ const TodoListContainer = styled.ul`
     padding: 0;
     list-style-type: none;
 `
-const ValidateInfo = styled.div`
+const FeedbackValidate = styled.div`
     padding: 1em;
     border: 1px solid ${({ theme }) => theme.colors.pink};
     font-size: .8em;
@@ -84,7 +84,7 @@ export class TodoList extends Component {
     }
 
     setFeedback(opacity, positionTop) {
-        const feedback = this.$$('#feedback-msg');
+        const feedback = this.$$('#feedback-validate');
         feedback.style.top = positionTop;
         feedback.style.opacity = opacity;
     }
@@ -127,9 +127,9 @@ export class TodoList extends Component {
                 <TodoListContainer>
                     {this.createTodoList()}
                 </TodoListContainer>
-                <ValidateInfo id="feedback-msg">
+                <FeedbackValidate id="feedback-validate">
                     <p>Wypełnij wszystkie pola!</p>
-                </ValidateInfo>
+                </FeedbackValidate>
             </>
         )
     }
