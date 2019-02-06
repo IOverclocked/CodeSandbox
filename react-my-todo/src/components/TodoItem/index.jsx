@@ -27,7 +27,7 @@ const ListItemDescription = styled.div`
     border-right: 2px solid ${({ theme }) => theme.colors.pink};
 `
 
-const TodoItem = ({ id, title, discription, isDone, onChangeDone }) => (
+const TodoItem = ({ id, title, discription, isDone, onChangeDone, onDeleteTodoItem }) => (
     <ListItemContainer>
         <ListItemTitle>
             {title}
@@ -39,6 +39,7 @@ const TodoItem = ({ id, title, discription, isDone, onChangeDone }) => (
         <ListItemDescription>
             {discription}
         </ListItemDescription>
+        <button onClick={onDeleteTodoItem.bind(this, id)}>Delete</button>
     </ListItemContainer>
 )
 
