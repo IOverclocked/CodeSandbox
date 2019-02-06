@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TodoItem from '../../components/TodoItem';
 import TodoAdd from '../../components/TodoAdd';
+import * as provaider from '../../helpers/provaider';
+import uuid from 'uuid';
 
 const TodoListContainer = styled.ul`
     margin: 0;
@@ -21,7 +23,7 @@ const FeedbackValidate = styled.div`
     right: 1em;
     left: 1em;
     opacity: 0;
-    transition: 500ms ease-out;
+    transition: 150ms ease-out;
 `
 export class TodoList extends Component {
     constructor(props) {
@@ -30,22 +32,27 @@ export class TodoList extends Component {
         this.state = {
             title: '',
             discription: '',
-            listItems: [{
-                id: 1,
-                title: 'Task1',
-                discription: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, eius. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, eius.',
-                isDone: false,
-            }, {
-                id: 2,
-                title: 'Task2',
-                discription: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, eius.',
-                isDone: false,
-            }, {
-                id: 3,
-                title: 'Task3',
-                discription: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, eius.',
-                isDone: true,
-            }]
+            feedbackMsg: '',
+            listItems: []
+        }
+    }
+
+    componentDidMount = () => {
+        this.downloadTodoList();
+    }
+
+    downloadTodoList = async () => {
+        const listItems = await provaider.getAll();
+        this.setState({ listItems });
+    }
+
+    onDeleteTodoItem = async (id) => {
+        const { listItems } = this.state;
+        const response = await provaider.del(id);
+        if (response.status === 200) {
+            this.showFeedback('The task was successfully deleted');
+            this.setState({ listItems: listItems.filter(item => item.id !== id) });
+            this.hiddenFeedback();
         }
     }
 
@@ -56,7 +63,7 @@ export class TodoList extends Component {
             }
             return item;
         })
-        this.setState({ listItems: newListItems })
+        this.setState({ listItems: newListItems });
         console.log(this.state.listItems);
     }
 
@@ -69,7 +76,8 @@ export class TodoList extends Component {
                     title={item.title}
                     discription={item.discription}
                     isDone={item.isDone}
-                    onChangeDone={this.onChangeDone}>
+                    onChangeDone={this.onChangeDone}
+                    onDeleteTodoItem={this.onDeleteTodoItem}>
                 </TodoItem>
             )
         })
@@ -83,34 +91,41 @@ export class TodoList extends Component {
         }
     }
 
-    setFeedback(opacity, positionTop) {
+    showFeedback(msg) {
+        this.setState({ feedbackMsg: msg });
         const feedback = this.$$('#feedback-validate');
-        feedback.style.top = positionTop;
-        feedback.style.opacity = opacity;
+        feedback.style.top = '0';
+        feedback.style.opacity = '1';
     }
 
-    add = (e) => {
+    hiddenFeedback() {
+        const timeout = setTimeout(() => {
+            this.setState({ feedbackMsg: '' });
+            const feedback = this.$$('#feedback-validate');
+            feedback.style.top = '-200px';
+            feedback.style.opacity = '0';
+            clearTimeout(timeout);
+        }, 2000);
+    }
+
+    add = async (e) => {
         e.preventDefault();
         const { title, discription, listItems } = this.state;
-
 
         console.log(title, discription);
 
         if (title && discription) {
-            listItems.push({
-                id: listItems.length + 1,
+            const newItem = {
+                id: uuid.v4(),
                 title: title,
                 discription: discription,
                 isDone: false
-            });
-            this.setState({ listItems, title: '', discription: '' });
+            };
+            const item = await provaider.add(newItem);
+            this.setState({ listItems: [...listItems, item] })
         } else {
-
-            this.setFeedback('1', '0');
-            const timeout = setTimeout(() => {
-                this.setFeedback('0', '-200px');
-                clearTimeout(timeout);
-            }, 2000);
+            this.showFeedback('All fields are required!');
+            this.hiddenFeedback();
             console.log('error');
         }
     }
@@ -120,7 +135,7 @@ export class TodoList extends Component {
     }
 
     render() {
-        let { title, discription } = this.state;
+        let { title, discription, feedbackMsg } = this.state;
         return (
             <>
                 <TodoAdd add={this.add} handleChange={this.handleChange} title={title} discription={discription} />
@@ -128,7 +143,7 @@ export class TodoList extends Component {
                     {this.createTodoList()}
                 </TodoListContainer>
                 <FeedbackValidate id="feedback-validate">
-                    <p>Wypełnij wszystkie pola!</p>
+                    <p>{feedbackMsg}</p>
                 </FeedbackValidate>
             </>
         )
