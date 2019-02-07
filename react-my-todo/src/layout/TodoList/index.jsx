@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TodoItem from '../../components/TodoItem';
 import TodoAdd from '../../components/TodoAdd';
-import * as provaider from '../../helpers/provider';
+import * as provider from '../../helpers/provider';
 import uuid from 'uuid';
 
 const TodoListContainer = styled.ul`
@@ -31,7 +31,7 @@ export class TodoList extends Component {
 
         this.state = {
             title: '',
-            discription: '',
+            description: '',
             feedbackMsg: '',
             listItems: []
         }
@@ -42,13 +42,13 @@ export class TodoList extends Component {
     }
 
     downloadTodoList = async () => {
-        const listItems = await provaider.getAll();
+        const listItems = await provider.getAll();
         this.setState({ listItems });
     }
 
     onDeleteTodoItem = async (id) => {
         const { listItems } = this.state;
-        const response = await provaider.del(id);
+        const response = await provider.del(id);
         if (response.status === 200) {
             this.showFeedback('The task was successfully deleted');
             this.setState({ listItems: listItems.filter(item => item.id !== id) });
@@ -57,17 +57,20 @@ export class TodoList extends Component {
     }
 
     onChangeDone = async (id) => {
+        const { listItems } = this.state;
 
-        const item = this.state.listItems.find(item => item.id === id);
-
-        let newListItems = this.state.listItems.map(item => {
+        let newListItems = listItems.map(item => {
             if (item.id === id) {
                 item.isDone = !item.isDone;
             }
             return item;
         })
+
         this.setState({ listItems: newListItems });
-        console.log(provaider.done(id, item));
+
+        const item = listItems.find(item => item.id === id);
+
+        provider.done(id, item);
     }
 
     createTodoList = () => {
@@ -77,7 +80,7 @@ export class TodoList extends Component {
                     key={item.id}
                     id={item.id}
                     title={item.title}
-                    discription={item.discription}
+                    description={item.description}
                     isDone={item.isDone}
                     onChangeDone={this.onChangeDone}
                     onDeleteTodoItem={this.onDeleteTodoItem}>
@@ -90,7 +93,7 @@ export class TodoList extends Component {
         if (e.target.name === 'title') {
             this.setState({ title: e.target.value });
         } else {
-            this.setState({ discription: e.target.value });
+            this.setState({ description: e.target.value });
         }
     }
 
@@ -113,18 +116,18 @@ export class TodoList extends Component {
 
     add = async (e) => {
         e.preventDefault();
-        const { title, discription, listItems } = this.state;
+        const { title, description, listItems } = this.state;
 
-        console.log(title, discription);
+        console.log(title, description);
 
-        if (title && discription) {
+        if (title && description) {
             const newItem = {
                 id: uuid.v4(),
                 title: title,
-                discription: discription,
+                description: description,
                 isDone: false
             };
-            const item = await provaider.add(newItem);
+            const item = await provider.add(newItem);
             this.setState({ listItems: [...listItems, item] })
         } else {
             this.showFeedback('All fields are required!');
@@ -138,10 +141,10 @@ export class TodoList extends Component {
     }
 
     render() {
-        let { title, discription, feedbackMsg } = this.state;
+        let { title, description, feedbackMsg } = this.state;
         return (
             <>
-                <TodoAdd add={this.add} handleChange={this.handleChange} title={title} discription={discription} />
+                <TodoAdd add={this.add} handleChange={this.handleChange} title={title} description={description} />
                 <TodoListContainer>
                     {this.createTodoList()}
                 </TodoListContainer>

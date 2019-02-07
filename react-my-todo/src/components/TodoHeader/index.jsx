@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const HeaderContainer = styled.header`
+    font-style: italic;
+    font-family: cursive;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,8 +24,6 @@ const HeaderTitle = styled.h2`
 const HeaderTitlePart = styled.span`
     font-size: 1.5em;
     font-weight: 100;
-    font-style: italic;
-    font-family: cursive;
 `
 const StyledLinkTitle = styled(Link)`
     text-decoration: none;
@@ -36,14 +36,15 @@ const StyledLinkTitle = styled(Link)`
     }
 `
 
-const TodoHeader = ({ props }) => (
+const TodoHeader = (props) => (
     <HeaderContainer>
         <HeaderTitle>
             <StyledLinkTitle to={'/'}>
                 <HeaderTitlePart>My</HeaderTitlePart>
-                <HeaderTitlePart>T</HeaderTitlePart>odo
-                        <HeaderTitlePart>L</HeaderTitlePart>ist
-                    </StyledLinkTitle>
+                <HeaderTitlePart>T</HeaderTitlePart>o
+                <HeaderTitlePart>D</HeaderTitlePart>o
+                <HeaderTitlePart>L</HeaderTitlePart>ist
+            </StyledLinkTitle>
         </HeaderTitle>
     </HeaderContainer>
 )

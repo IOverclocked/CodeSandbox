@@ -1,5 +1,6 @@
 import React from 'react'
 import Checkbox from '../Checkbox'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const ListItemContainer = styled.li`
@@ -27,7 +28,7 @@ const ListItemDescription = styled.div`
     border-right: 2px solid ${({ theme }) => theme.colors.pink};
 `
 
-const TodoItem = ({ id, title, discription, isDone, onChangeDone, onDeleteTodoItem }) => (
+const TodoItem = ({ id, title, description, isDone, onChangeDone, onDeleteTodoItem, onEditTodoItem }) => (
     <ListItemContainer>
         <ListItemTitle>
             {title}
@@ -37,9 +38,10 @@ const TodoItem = ({ id, title, discription, isDone, onChangeDone, onDeleteTodoIt
             />
         </ListItemTitle>
         <ListItemDescription>
-            {discription}
+            {description}
         </ListItemDescription>
         <button onClick={onDeleteTodoItem.bind(this, id)}>Delete</button>
+        <button><Link to={`/edit_item/${id}`}>Edit</Link></button>
     </ListItemContainer>
 )
 

@@ -18,6 +18,8 @@ export const post = (url, body) => request(url, 'POST', body);
 
 export const done = (url, body) => request(url, 'PUT', body);
 
+export const edit = (url, body) => request(url, 'PUT', body);
+
 export const del = (url) => fetch(url, {
     method: 'DELETE',
     headers: {

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import TodoHeader from './components/TodoHeader';
-import TodoAdd from './components/TodoAdd';
 import TodoList from './layout/TodoList';
+import TodoEdit from './layout/TodoEdit';
 import theme from './theme';
-
 
 const GlobalStyled = createGlobalStyle`
     body {
@@ -39,6 +38,7 @@ class App extends Component {
                             <TodoHeader />
                             <AppContainer>
                                 <Route exact path='/' component={TodoList} />
+                                <Route exact path='/edit_item/:id' component={TodoEdit} />
                             </AppContainer>
                         </>
                     </Router>
