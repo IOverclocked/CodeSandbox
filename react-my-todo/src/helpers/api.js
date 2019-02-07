@@ -1,9 +1,3 @@
-export const get = (url) => fetch(url)
-    .then(response => {
-        if (response.ok) return response.json();
-        else throw new Error(response);
-    })
-
 const request = (url, method, body) => fetch(url, {
     method: method,
     headers: {
@@ -15,6 +9,11 @@ const request = (url, method, body) => fetch(url, {
     else throw new Error(response.status, response.statusText);
 })
 
+export const get = (url) => fetch(url)
+    .then(response => {
+        if (response.ok) return response.json();
+        else throw new Error(response);
+    })
 export const post = (url, body) => request(url, 'POST', body);
 
 export const done = (url, body) => request(url, 'PUT', body);

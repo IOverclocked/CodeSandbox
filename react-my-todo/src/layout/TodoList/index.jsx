@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import TodoItem from '../../components/TodoItem';
 import TodoAdd from '../../components/TodoAdd';
-import * as provaider from '../../helpers/provaider';
+import * as provaider from '../../helpers/provider';
 import uuid from 'uuid';
 
 const TodoListContainer = styled.ul`
