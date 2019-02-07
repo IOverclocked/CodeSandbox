@@ -17,6 +17,8 @@ const request = (url, method, body) => fetch(url, {
 
 export const post = (url, body) => request(url, 'POST', body);
 
+export const done = (url, body) => request(url, 'PUT', body);
+
 export const del = (url) => fetch(url, {
     method: 'DELETE',
     headers: {
@@ -26,3 +28,5 @@ export const del = (url) => fetch(url, {
     if (response.ok) return response;
     else throw new Error(response);
 })
+
+

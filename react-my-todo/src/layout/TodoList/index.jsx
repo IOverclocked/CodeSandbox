@@ -56,7 +56,10 @@ export class TodoList extends Component {
         }
     }
 
-    onChangeDone = (id) => {
+    onChangeDone = async (id) => {
+
+        const item = this.state.listItems.find(item => item.id === id);
+
         let newListItems = this.state.listItems.map(item => {
             if (item.id === id) {
                 item.isDone = !item.isDone;
@@ -64,7 +67,7 @@ export class TodoList extends Component {
             return item;
         })
         this.setState({ listItems: newListItems });
-        console.log(this.state.listItems);
+        console.log(provaider.done(id, item));
     }
 
     createTodoList = () => {
