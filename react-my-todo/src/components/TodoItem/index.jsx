@@ -39,7 +39,15 @@ const ButtonStyled = styled.button`
     border-radius: .5em;
     margin: 1em 1em 1em 0;
     color: ${ ({ theme }) => theme.colors.white};
-    background: ${ ({ theme, del }) => del ? theme.colors.pink : theme.colors.gold};
+    background: ${ ({ theme }) => theme.colors.littlePrimary};
+    border: 1px solid ${ ({ theme, del }) => del ? theme.colors.pink : theme.colors.gold};
+    transition: 150ms;
+    &:hover {
+        box-shadow: 0 0 10px 1px ${ ({ theme, del }) => del ? theme.colors.pink : theme.colors.gold};
+    }
+    &:focus {
+        outline: none;
+    }
 `
 const LinkStyled = styled(Link)`
     text-decoration: none;
