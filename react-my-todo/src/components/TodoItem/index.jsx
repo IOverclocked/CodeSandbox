@@ -27,8 +27,28 @@ const ListItemDescription = styled.div`
     color:  ${({ theme }) => theme.colors.little};
     border-right: 2px solid ${({ theme }) => theme.colors.pink};
 `
+const BoxButtons = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+`
+const ButtonStyled = styled.button`
+    border: none;
+    padding: ${({ link }) => link ? 0 : '.5em'};
+    cursor: pointer;
+    border-radius: .5em;
+    margin: 1em 1em 1em 0;
+    color: ${ ({ theme }) => theme.colors.white};
+    background: ${ ({ theme, del }) => del ? theme.colors.pink : theme.colors.gold};
+`
+const LinkStyled = styled(Link)`
+    text-decoration: none;
+    display: block;
+    padding: .5em;
+    color: ${ ({ theme }) => theme.colors.white};
+`
 
-const TodoItem = ({ id, title, description, isDone, onChangeDone, onDeleteTodoItem, onEditTodoItem }) => (
+const TodoItem = ({ id, title, description, isDone, onChangeDone, onDeleteTodoItem }) => (
     <ListItemContainer>
         <ListItemTitle>
             {title}
@@ -40,8 +60,12 @@ const TodoItem = ({ id, title, description, isDone, onChangeDone, onDeleteTodoIt
         <ListItemDescription>
             {description}
         </ListItemDescription>
-        <button onClick={onDeleteTodoItem.bind(this, id)}>Delete</button>
-        <button><Link to={`/edit_item/${id}`}>Edit</Link></button>
+        <BoxButtons>
+            <ButtonStyled link>
+                <LinkStyled to={`/edit_item/${id}`}>Edit</LinkStyled>
+            </ButtonStyled>
+            <ButtonStyled del onClick={onDeleteTodoItem.bind(this, id)}>Delete</ButtonStyled>
+        </BoxButtons>
     </ListItemContainer>
 )
 

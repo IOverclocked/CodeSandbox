@@ -108,9 +108,11 @@ export class TodoList extends Component {
         const timeout = setTimeout(() => {
             this.setState({ feedbackMsg: '' });
             const feedback = this.$$('#feedback-validate');
-            feedback.style.top = '-200px';
-            feedback.style.opacity = '0';
-            clearTimeout(timeout);
+            if (feedback) {
+                feedback.style.top = '-200px';
+                feedback.style.opacity = '0';
+                clearTimeout(timeout);
+            }
         }, 2000);
     }
 
