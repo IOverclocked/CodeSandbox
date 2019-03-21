@@ -3,6 +3,7 @@ import { createStore } from 'redux';
 
 //store
 const initialMovies = {
+    listName: 'Favourite', 
     movies: [
         'Rambo', 'Hakerzy', 'Matrix'
     ]
@@ -11,6 +12,16 @@ const initialMovies = {
 //reducers
 function movies(state = initialMovies, action) {
     switch (action.type) {    
+        case 'ADD': 
+            return {
+                ...state,
+                movies: [...state.movies, action.movie]
+            }
+        case 'RESET':
+            return {
+                ...state,
+                movies: []
+            }
         default:
             return state;
     }
@@ -26,6 +37,9 @@ class App extends Component {
     return (
       <div className="App">
         <h2>React Redux</h2>
+        <ul>
+            
+        </ul>
       </div>
     );
   }
