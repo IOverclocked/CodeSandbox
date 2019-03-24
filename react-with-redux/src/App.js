@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
 import TodoList from './containers/TodoList'
-
-//Ations
-const todoAction = {
-    type: 'ADD_TODO',
-    todo: 'buy milk'
-}
+import AddTodo from './containers/AddTodo';
+import EditTodo from './containers/EditTodo';
+import { connect } from 'react-redux';
 
 export class App extends Component {
-
     render() {
-        //last video #38 now #39
+        const { edit } = this.props;
         return (
             <>
-                <TodoList />
+                {
+                    edit.active
+                        ? <EditTodo todo={edit.todo} />
+                        : <><AddTodo /><TodoList /></>
+                }
             </>
         )
     }
 }
 
-export default App
+const mapStateToProps = (state) => {
+    return {
+        edit: state.edit
+    }
+}
+
+export default connect(mapStateToProps)(App)
 
 

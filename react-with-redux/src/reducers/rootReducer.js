@@ -1,41 +1,83 @@
 //State
 const initState = {
+    edit: {
+        active: false,
+        todo: {}
+    },
     todos: [{
         id: 1,
-        body: 'lorem ipsum dolor sit amet'
+        todo: 'lorem ipsum dolor sit amet',
+        done: false
     }, {
         id: 2,
-        body: 'lorem ipsum dolor sit amet'
+        todo: 'lorem ipsum dolor sit amet',
+        done: false
     }, {
         id: 3,
-        body: 'lorem ipsum dolor sit amet'
+        todo: 'lorem ipsum dolor sit amet',
+        done: false
     }, {
         id: 4,
-        body: 'lorem ipsum dolor sit amet'
+        todo: 'lorem ipsum dolor sit amet',
+        done: false
     },]
 }
 
 const rootReducer = (state = initState, action) => {
-    return state;
+    switch (action.type) {
+        case 'ADD_TODO':
+            return {
+                ...state,
+                todos: [...state.todos, action.todo]
+            }
+        case 'DELETE_TODO':
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== action.id)
+            }
+        case 'EDIT_TODO':
+            return {
+                ...state,
+                edit: {
+                    active: false,
+                    todo: {}
+                },
+                todos: state.todos.map(todo => {
+                    if (todo.id === action.todo.id) {
+                        return action.todo;
+                    } else return todo;
+                })
+            }
+        case 'EDIT_MODE_ON':
+            return {
+                ...state,
+                edit: {
+                    active: true,
+                    todo: action.todo
+                },
+            }
+        case 'EDIT_MODE_OFF':
+            return {
+                ...state,
+                edit: {
+                    active: false,
+                    todo: {}
+                },
+            }
+        case 'TOGGLE_COMPLETED':
+            return {
+                ...state,
+                todos: state.todos.map(todo => {
+                    if (todo.id === action.id) {
+                        todo.done = !todo.done;
+                    }
+                    return todo;
+                })
+            }
+        default:
+            return state;
+    }
 }
-
-//Reducers
-// function reducer(state = initState, action) {
-//     switch (action.type) {
-//         case 'ADD_TODO':
-//             return {
-//                 ...state,
-//                 todos: [...state.todos, action.todo]
-//             }
-//         case 'ADD_POST':
-//             return {
-//                 ...state,
-//                 posts: [...state.posts, action.post]
-//             }
-//         default:
-//             return state
-//     }
-// }
 
 export default rootReducer;
 
