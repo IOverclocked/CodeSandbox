@@ -12,8 +12,7 @@ const initState = {
     }, {
         id: 4,
         body: 'lorem ipsum dolor sit amet'
-    },],
-    posts: []
+    },]
 }
 
 const rootReducer = (state = initState, action) => {
