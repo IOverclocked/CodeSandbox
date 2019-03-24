@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
+import { addTodo } from '../actions/todosActions'
 
 class AddTodo extends Component {
     state = {
@@ -34,7 +35,7 @@ class AddTodo extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTodo: (todo) => { dispatch({ type: 'ADD_TODO', todo }) }
+        addTodo: (todo) => { dispatch(addTodo(todo)) }
     }
 }
 

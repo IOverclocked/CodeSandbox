@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { editTodo, exitEdit } from '../actions/todosActions';
 
 class EditTodo extends Component {
     state = {
@@ -46,8 +47,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editTodo: (todo) => { dispatch({ type: 'EDIT_TODO', todo }) },
-        exitEdit: () => { dispatch({ type: 'EDIT_MODE_OFF' }) }
+        editTodo: (todo) => { dispatch(editTodo(todo)) },
+        exitEdit: () => { dispatch(exitEdit()) }
     }
 }
 

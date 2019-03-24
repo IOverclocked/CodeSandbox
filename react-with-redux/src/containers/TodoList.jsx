@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Todo from '../components/Todo';
+import { deleteTodo, editModeOn, toggleCompleted } from '../actions/todosActions'
 
 class TodoList extends Component {
 
@@ -23,13 +24,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteTodo: (id) => {
-            dispatch({ type: 'DELETE_TODO', id })
+            dispatch(deleteTodo(id))
         },
         editModeOn: (todo) => {
-            dispatch({ type: 'EDIT_MODE_ON', todo })
+            dispatch(editModeOn(todo))
         },
         toggleCompleted: (id) => {
-            dispatch({ type: 'TOGGLE_COMPLETED', id })
+            dispatch(toggleCompleted(id))
         }
     }
 }
