@@ -38,3 +38,10 @@ export const exitEdit = () => {
         type: 'EDIT_MODE_OFF'
     }
 }
+
+export const changeVisible = (visibleType) => {
+    return {
+        type: 'CHANGE_VISIBLE',
+        visibleType: visibleType
+    }
+}

@@ -20,7 +20,8 @@ const initState = {
         id: 4,
         todo: 'lorem ipsum dolor sit amet',
         done: false
-    },]
+    }],
+    visible: 'ALL',
 }
 
 export const rootReducer = (state = initState, action) => {
@@ -73,6 +74,12 @@ export const rootReducer = (state = initState, action) => {
                     }
                     return todo;
                 })
+            }
+        case 'CHANGE_VISIBLE':
+        debugger
+            return {
+                ...state,
+                visible: action.type
             }
         default:
             return state;
