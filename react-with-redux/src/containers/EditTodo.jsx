@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editTodo, exitEdit } from '../actions';
 
@@ -37,6 +38,10 @@ class EditTodo extends Component {
             </>
         )
     }
+}
+
+EditTodo.propTypes = {
+    todo: PropTypes.object.isRequired
 }
 
 const mapDispatchToProps = (dispatch) => {

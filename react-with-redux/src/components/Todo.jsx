@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const styleIsDone = {
     cursor: 'pointer',
@@ -18,5 +19,11 @@ const Todo = ({ todo, deleteTodo, editModeOn, toggleCompleted }) => (
     </li>
 );
 
+Todo.propTypes = {
+    todo: PropTypes.object.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    editModeOn: PropTypes.func.isRequired,
+    toggleCompleted: PropTypes.func.isRequired,
+}
 
 export default Todo;
