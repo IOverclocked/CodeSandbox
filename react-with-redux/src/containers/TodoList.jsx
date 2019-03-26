@@ -6,35 +6,36 @@ import Todo from '../components/Todo';
 
 class TodoList extends Component {
     render() {
-        const { todos, deleteTodo, editModeOn, toggleCompleted, changeVisible } = this.props;
+        const { todos, visibleTypes, deleteTodo, editModeOn, toggleCompleted, changeVisible } = this.props;
+        const { all, todo, completed } = visibleTypes;
         return (
             <>
                 <ul>
                     <Todo todos={todos} deleteTodo={deleteTodo} editModeOn={editModeOn} toggleCompleted={toggleCompleted} />
                 </ul>
-                <button onClick={() => changeVisible('ALL')}>All</button>
-                <button onClick={() => changeVisible('TODO')}>Todo</button>
-                <button onClick={() => changeVisible('COMPLETED')}>Completed</button>
+                <button onClick={() => changeVisible(all)}>All</button>
+                <button onClick={() => changeVisible(todo)}>Todo</button>
+                <button onClick={() => changeVisible(completed)}>Completed</button>
             </>
         )
     }
 }
 
 const checkVisibleType = (todos, type) => {
-    debugger
     switch (type) {
         case 'ALL':
             return todos;
-        case 'COMPLETED':
-            return todos.filter(t => t.done);
         case 'TODO':
             return todos.filter(t => !t.done);
+        case 'COMPLETED':
+            return todos.filter(t => t.done);
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         todos: checkVisibleType(state.todos, state.visible),
+        visibleTypes: state.visibleTypes
     }
 }
 

@@ -22,6 +22,11 @@ const initState = {
         done: false
     }],
     visible: 'ALL',
+    visibleTypes: {
+        all: 'ALL',
+        completed: 'COMPLETED',
+        todo: 'TODO'
+    }
 }
 
 export const rootReducer = (state = initState, action) => {
@@ -76,10 +81,9 @@ export const rootReducer = (state = initState, action) => {
                 })
             }
         case 'CHANGE_VISIBLE':
-        debugger
             return {
                 ...state,
-                visible: action.type
+                visible: action.visibleType
             }
         default:
             return state;
