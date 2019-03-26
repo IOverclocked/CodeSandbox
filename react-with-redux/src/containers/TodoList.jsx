@@ -1,21 +1,60 @@
-/* eslint-disable default-case */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteTodo, editModeOn, toggleCompleted, changeVisible } from '../actions';
 import Todo from '../components/Todo';
 
 class TodoList extends Component {
+
+    equal = (type, value) => {
+        return type === value;
+    }
+
+    toUpperFirstLetter(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    createButtonsFilters = (types, type, callback) => {
+        return Object.keys(types).map(el => {
+            const value = el.toUpperCase();
+            const label = this.toUpperFirstLetter(el);
+            return (
+                <button
+                    key={value}
+                    disabled={this.equal(type, value)}
+                    onClick={() => callback(value)}>
+                    {label}
+                </button>
+            )
+        })
+    }
+
     render() {
-        const { list, visibleTypes, deleteTodo, editModeOn, toggleCompleted, changeVisible } = this.props;
-        const { all, todo, completed } = visibleTypes;
+        const {
+            list,
+            visibleTypes,
+            visibleType,
+            deleteTodo,
+            editModeOn,
+            toggleCompleted,
+            changeVisible
+        } = this.props;
+
         return (
             <>
                 <ul>{
-                    list.map(todo => <Todo key={todo.id} todo={todo} deleteTodo={deleteTodo} editModeOn={editModeOn} toggleCompleted={toggleCompleted} />)
+                    list.map(todo =>
+                        <Todo
+                            key={todo.id}
+                            todo={todo}
+                            deleteTodo={deleteTodo}
+                            editModeOn={editModeOn}
+                            toggleCompleted={toggleCompleted}
+                        />)
                 }</ul>
-                <button onClick={() => changeVisible(all)}>All</button>
-                <button onClick={() => changeVisible(todo)}>Todo</button>
-                <button onClick={() => changeVisible(completed)}>Completed</button>
+                <div>{
+                    this.createButtonsFilters(visibleTypes, visibleType, changeVisible)
+                }</div>
+
             </>
         )
     }
@@ -29,13 +68,16 @@ const checkVisibleType = (list, type) => {
             return list.filter(t => !t.done);
         case 'COMPLETED':
             return list.filter(t => t.done);
+        default: 
+            return;
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         list: checkVisibleType(state.todos.list, state.visibleFilters.visible),
-        visibleTypes: state.visibleFilters.visibleTypes
+        visibleTypes: state.visibleFilters.visibleTypes,
+        visibleType: state.visibleFilters.visible
     }
 }
 

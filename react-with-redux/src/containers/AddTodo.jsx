@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
@@ -22,13 +23,26 @@ class AddTodo extends Component {
         this.setState({ todo: '' });
     }
 
+    setTitle = (type) => {
+        switch (type) {
+            case 'ALL':
+                return 'All tasks';
+            case 'TODO':
+                return 'Todo tasks';
+            case 'COMPLETED':
+                return 'Completed task';
+        }
+    }
+
     render() {
         const { todo } = this.state;
-        const { listLength } = this.props;
+        const { listLength, visibleType } = this.props;
 
         return (
             <>
+
                 <Counter listLength={listLength} />
+                <h2>{this.setTitle(visibleType)}</h2>
                 <form onSubmit={this.addTodo}>
                     <input type="text" name="todo" value={todo} onChange={this.handleChange} required />
                     <button type="submit" name="submit" value="Add">Add</button>
@@ -40,7 +54,8 @@ class AddTodo extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        listLength: state.todos.list.length
+        listLength: state.todos.list.length,
+        visibleType: state.visibleFilters.visible
     }
 }
 
