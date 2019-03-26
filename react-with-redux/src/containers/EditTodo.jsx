@@ -15,12 +15,12 @@ class EditTodo extends Component {
         }
         this.setState({ todo: todo })
         console.log(this.state.todo);
-
     }
 
     editTodo = (e) => {
         e.preventDefault();
         this.props.editTodo(this.state.todo);
+        this.props.exitEdit();
     }
 
     render() {
@@ -39,12 +39,6 @@ class EditTodo extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        todos: state.todos
-    }
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         editTodo: (todo) => { dispatch(editTodo(todo)) },
@@ -52,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditTodo);
+export default connect(null, mapDispatchToProps)(EditTodo);

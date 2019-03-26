@@ -24,11 +24,11 @@ class AddTodo extends Component {
 
     render() {
         const { todo } = this.state;
-        const { todosLength } = this.props;
+        const { listLength } = this.props;
 
         return (
             <>
-                <Counter todosLength={todosLength} />
+                <Counter listLength={listLength} />
                 <form onSubmit={this.addTodo}>
                     <input type="text" name="todo" value={todo} onChange={this.handleChange} required />
                     <button type="submit" name="submit" value="Add">Add</button>
@@ -40,7 +40,7 @@ class AddTodo extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        todosLength: state.todos.length + 1
+        listLength: state.todos.list.length + 1
     }
 }
 

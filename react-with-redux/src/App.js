@@ -6,12 +6,12 @@ import { connect } from 'react-redux';
 
 export class App extends Component {
     render() {
-        const { edit } = this.props;
+        const { editMode } = this.props;
         return (
             <>
                 {
-                    edit.active
-                        ? <EditTodo todo={edit.todo} />
+                    editMode.active
+                        ? <EditTodo todo={editMode.todo} />
                         : <><AddTodo /><TodoList /></>
                 }
             </>
@@ -21,7 +21,7 @@ export class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        edit: state.edit
+        editMode: state.editMode.edit
     }
 }
 

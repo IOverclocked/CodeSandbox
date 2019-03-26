@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Counter = ({ todosLength }) => (
+const Counter = ({ listLength }) => (
     <>
-        <h2>{todosLength}</h2>
+        <h2>{listLength}</h2>
     </>
 )
 
