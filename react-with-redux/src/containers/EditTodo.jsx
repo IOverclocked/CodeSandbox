@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editTodo, exitEdit } from '../actions/todosActions';
+import { editTodo, exitEdit } from '../actions';
 
 class EditTodo extends Component {
     state = {

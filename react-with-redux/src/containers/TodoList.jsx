@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteTodo, editModeOn, toggleCompleted, changeVisible } from '../actions/todosActions';
+import { deleteTodo, editModeOn, toggleCompleted, changeVisible } from '../actions';
 import Todo from '../components/Todo';
 
 class TodoList extends Component {

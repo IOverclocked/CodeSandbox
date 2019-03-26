@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions/todosActions';
+import { addTodo } from '../actions';
 import Counter from '../components/Counter';
 
 class AddTodo extends Component {
@@ -40,7 +40,7 @@ class AddTodo extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        listLength: state.todos.list.length + 1
+        listLength: state.todos.list.length
     }
 }
 
