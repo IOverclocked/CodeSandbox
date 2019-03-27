@@ -6,9 +6,12 @@ import Todo from '../components/Todo';
 
 class TodoList extends Component {
     static propTypes = {
+        //variables
         list: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
         visibleTypes: PropTypes.object.isRequired,
         visibleType: PropTypes.string.isRequired,
+
+        //functions
         deleteTodo: PropTypes.func.isRequired,
         editModeOn: PropTypes.func.isRequired,
         toggleCompleted: PropTypes.func.isRequired,

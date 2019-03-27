@@ -20,7 +20,9 @@ const Todo = ({ todo, deleteTodo, editModeOn, toggleCompleted }) => (
 );
 
 Todo.propTypes = {
+    //variables
     todo: PropTypes.object.isRequired,
+    //functions
     deleteTodo: PropTypes.func.isRequired,
     editModeOn: PropTypes.func.isRequired,
     toggleCompleted: PropTypes.func.isRequired,

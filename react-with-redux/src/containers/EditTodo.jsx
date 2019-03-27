@@ -5,7 +5,9 @@ import { editTodo, exitEdit } from '../actions';
 
 class EditTodo extends Component {
     static propTypes = {
+        //variables
         todo: PropTypes.object.isRequired,
+        //functions
         editTodo: PropTypes.func.isRequired,
         exitEdit: PropTypes.func.isRequired
     }

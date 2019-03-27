@@ -8,6 +8,7 @@ const Counter = ({ listLength }) => (
 )
 
 Counter.propTypes = {
+    //variables
     listLength: PropTypes.number.isRequired
 }
 

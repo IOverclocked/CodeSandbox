@@ -8,8 +8,10 @@ import Counter from '../components/Counter';
 
 class AddTodo extends Component {
     static propTypes = {
+        //variables
         listLength: PropTypes.number.isRequired,
         visibleType: PropTypes.string.isRequired,
+        //functions
         addTodo: PropTypes.func.isRequired
     }
 

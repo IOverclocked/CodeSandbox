@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 export class App extends Component {
     static propTypes = {
+        //variables
         editMode: PropTypes.object.isRequired
     }
     render() {
