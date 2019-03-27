@@ -1,54 +1,54 @@
 const initState = {
-    list: [{
-        id: 1,
-        todo: 'lorem ipsum dolor sit amet',
-        done: false
-    }, {
-        id: 2,
-        todo: 'lorem ipsum dolor sit amet',
-        done: false
-    }, {
-        id: 3,
-        todo: 'lorem ipsum dolor sit amet',
-        done: false
-    }, {
-        id: 4,
-        todo: 'lorem ipsum dolor sit amet',
-        done: false
-    }]
+    list: []
+}
+
+const addTodo = (state, action) => {
+    return {
+        ...state,
+        list: [...state.list, action.todo]
+    }
+}
+
+const deleteTodo = (state, action) => {
+    return {
+        ...state,
+        list: state.list.filter(todo => todo.id !== action.id)
+    }
+}
+
+const editTodo = (state, action) => {
+    return {
+        ...state,
+        list: state.list.map(todo => {
+            if (todo.id === action.todo.id) {
+                return action.todo;
+            } else return todo;
+        })
+    }
+}
+
+const toggleCompleted = (state, action) => {
+    return {
+        ...state,
+        list: state.list.map(todo => {
+            if (todo.id === action.id) {
+                todo.done = !todo.done;
+            }
+            return todo;
+        })
+    }
 }
 
 const todos = (state = initState, action) => {
     switch (action.type) {
         case 'ADD_TODO':
-            return {
-                ...state,
-                list: [...state.list, action.todo]
-            }
+            return addTodo(state, action);
         case 'DELETE_TODO':
-            return {
-                ...state,
-                list: state.list.filter(todo => todo.id !== action.id)
-            }
+            return deleteTodo(state, action);
         case 'EDIT_TODO':
-            return {
-                ...state,
-                list: state.list.map(todo => {
-                    if (todo.id === action.todo.id) {
-                        return action.todo;
-                    } else return todo;
-                })
-            }
+            return editTodo(state, action);
         case 'TOGGLE_COMPLETED':
-            return {
-                ...state,
-                list: state.list.map(todo => {
-                    if (todo.id === action.id) {
-                        todo.done = !todo.done;
-                    }
-                    return todo;
-                })
-            }
+            return toggleCompleted(state, action);
         default:
             return state;
     }

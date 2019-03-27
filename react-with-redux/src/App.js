@@ -14,7 +14,7 @@ export class App extends Component {
         const { editMode } = this.props;
         return (
             <>
-                <h2>Welcome</h2>
+                <h2>React version: {React.version}</h2>
                 {
                     editMode.active
                         ? <EditTodo todo={editMode.todo} />

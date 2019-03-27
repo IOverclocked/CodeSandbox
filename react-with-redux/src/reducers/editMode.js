@@ -5,24 +5,32 @@ const initState = {
     },
 }
 
+const editModeOn = (state, action) => {
+    return {
+        ...state,
+        edit: {
+            active: true,
+            todo: action.todo
+        },
+    }
+}
+
+const editModeOff = (state, action) => {
+    return {
+        ...state,
+        edit: {
+            active: false,
+            todo: {}
+        },
+    }
+}
+
 const editMode = (state = initState, action) => {
     switch (action.type) {
         case 'EDIT_MODE_ON':
-            return {
-                ...state,
-                edit: {
-                    active: true,
-                    todo: action.todo
-                },
-            }
+            return editModeOn(state, action);
         case 'EDIT_MODE_OFF':
-            return {
-                ...state,
-                edit: {
-                    active: false,
-                    todo: {}
-                },
-            }
+            return editModeOff(state, action);
         default:
             return state;
     }

@@ -7,13 +7,17 @@ const initState = {
     }
 }
 
+const changeVisible = (state, action) => {
+    return {
+        ...state,
+        visible: action.visibleType
+    }
+}
+
 const visibleFilters = (state = initState, action) => {
     switch (action.type) {
         case 'CHANGE_VISIBLE':
-            return {
-                ...state,
-                visible: action.visibleType
-            }
+            return changeVisible(state, action);
         default:
             return state;
     }

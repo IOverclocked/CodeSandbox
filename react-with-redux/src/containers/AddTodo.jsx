@@ -49,7 +49,6 @@ class AddTodo extends Component {
 
         return (
             <>
-                <h2>{React.version}</h2>
                 <Counter listLength={listLength} />
                 <h2>{this.setTitle(visibleType)}</h2>
                 <form onSubmit={this.addTodo}>
