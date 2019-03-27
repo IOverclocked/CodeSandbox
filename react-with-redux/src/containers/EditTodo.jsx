@@ -23,7 +23,6 @@ class EditTodo extends Component {
             done: this.props.todo.done
         }
         this.setState({ todo: todo })
-        console.log(this.state.todo);
     }
 
     editTodo = (e) => {
