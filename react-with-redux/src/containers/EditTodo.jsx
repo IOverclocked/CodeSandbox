@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { editTodo, exitEdit } from '../actions';
 
 class EditTodo extends Component {
+    static propTypes = {
+        todo: PropTypes.object.isRequired,
+        editTodo: PropTypes.func.isRequired,
+        exitEdit: PropTypes.func.isRequired
+    }
+
     state = {
         todo: this.props.todo
     }
@@ -40,9 +46,7 @@ class EditTodo extends Component {
     }
 }
 
-EditTodo.propTypes = {
-    todo: PropTypes.object.isRequired
-}
+
 
 const mapDispatchToProps = (dispatch) => {
     return {

@@ -1,11 +1,18 @@
 /* eslint-disable default-case */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
 import Counter from '../components/Counter';
 
 class AddTodo extends Component {
+    static propTypes = {
+        listLength: PropTypes.number.isRequired,
+        visibleType: PropTypes.string.isRequired,
+        addTodo: PropTypes.func.isRequired
+    }
+
     state = {
         todo: ''
     }

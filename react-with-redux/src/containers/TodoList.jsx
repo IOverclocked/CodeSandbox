@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteTodo, editModeOn, toggleCompleted, changeVisible } from '../actions';
 import Todo from '../components/Todo';
 
 class TodoList extends Component {
+    static propTypes = {
+        list: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+        visibleTypes: PropTypes.object.isRequired,
+        visibleType: PropTypes.string.isRequired,
+        deleteTodo: PropTypes.func.isRequired,
+        editModeOn: PropTypes.func.isRequired,
+        toggleCompleted: PropTypes.func.isRequired,
+        changeVisible: PropTypes.func.isRequired
+    }
 
     equal = (type, value) => {
         return type === value;
