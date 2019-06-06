@@ -20,7 +20,8 @@
         background: #777;
       }
 
-      #content {
+      #content,
+      #content__page {
         max-width: 960px;
         margin: 0 auto;
         display: grid;
@@ -74,6 +75,46 @@
         align-self: start;
         justify-self: start;
       }
+
+      #content__page {
+        grid-template-columns: repeat(12, 1fr);
+      }
+
+      .page__tag {
+        background: #3bbced;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      header {
+        grid-column: 1 / 13;
+      }
+
+      aside {
+        grid-column: 1 / 4;
+      }
+
+      main {
+        grid-column: 4 / 13;
+        grid-row: 2 / 4;
+      }
+
+      nav {
+        grid-column: 1 / 4;
+        grid-row: 3 / 4;
+      }
+
+      section {
+        grid-column: 1 / 13;
+        grid-row: 4 / 6;
+      }
+
+      footer {
+        grid-column: 1 / 13;
+        grid-row: 6;
+      }
     </style>
   </head>
   <body>
@@ -87,6 +128,14 @@
       <div class="eight">7</div>
       <div class="nine">8</div>
       <div class="ten">9</div>
+    </div>
+    <div id="content__page">
+      <header class="page__tag">Header</header>
+      <aside class="page__tag">Aside</aside>
+      <nav class="page__tag">Nav</nav>
+      <main class="page__tag">Main</main>
+      <section class="page__tag">Section</section>
+      <footer class="page__tag">Footer</footer>
     </div>
   </body>
 </html>
