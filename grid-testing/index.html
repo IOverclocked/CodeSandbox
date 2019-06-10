@@ -80,6 +80,7 @@
         grid-template-columns: repeat(12, 1fr);
       }
 
+      #content__page-3 > *,
       .page__tag {
         background: #3bbced;
         padding: 30px;
@@ -169,6 +170,14 @@
       .footer {
         grid-area: footer;
       }
+
+      #content__page-3 {
+        max-width: 960px;
+        display: grid;
+        margin: 64px auto 0;
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
     </style>
   </head>
   <body>
@@ -200,6 +209,15 @@
       <main class="main page__tag">Main</main>
       <section class="section page__tag">Section</section>
       <footer class="footer page__tag">Footer</footer>
+    </div>
+
+    <div id="content__page-3">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
     </div>
   </body>
 </html>
