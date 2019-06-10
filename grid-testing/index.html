@@ -121,15 +121,29 @@
         display: grid;
         margin: 64px auto 0;
         grid-gap: 10px;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: minmax(100px, auto);
         grid-template-areas:
-          "header header header header"
-          "aside main main main"
-          "nav main main main"
-          "section section section section"
-          "section section section section"
-          "footer footer footer footer";
+          "header header"
+          "footer footer"
+          "main main"
+          "main main"
+          "aside nav"
+          "section section"
+          "section section";
+      }
+
+      @media screen and (min-width: 768px) {
+        #content__page-2 {
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-areas:
+            "header header header header"
+            "aside main main main"
+            "nav main main main"
+            "section section section section"
+            "section section section section"
+            "footer footer footer footer";
+        }
       }
 
       .header {
