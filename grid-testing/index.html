@@ -82,7 +82,7 @@
 
       .page__tag {
         background: #3bbced;
-        padding: 15px;
+        padding: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -115,6 +115,46 @@
         grid-column: 1 / 13;
         grid-row: 6;
       }
+
+      #content__page-2 {
+        max-width: 960px;
+        display: grid;
+        margin: 64px auto 0;
+        grid-gap: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(100px, auto);
+        grid-template-areas:
+          "header header header header"
+          "aside main main main"
+          "nav main main main"
+          "section section section section"
+          "section section section section"
+          "footer footer footer footer";
+      }
+
+      .header {
+        grid-area: header;
+      }
+
+      .aside {
+        grid-area: aside;
+      }
+
+      .main {
+        grid-area: main;
+      }
+
+      .nav {
+        grid-area: nav;
+      }
+
+      .section {
+        grid-area: section;
+      }
+
+      .footer {
+        grid-area: footer;
+      }
     </style>
   </head>
   <body>
@@ -129,6 +169,7 @@
       <div class="nine">8</div>
       <div class="ten">9</div>
     </div>
+
     <div id="content__page">
       <header class="page__tag">Header</header>
       <aside class="page__tag">Aside</aside>
@@ -136,6 +177,15 @@
       <main class="page__tag">Main</main>
       <section class="page__tag">Section</section>
       <footer class="page__tag">Footer</footer>
+    </div>
+
+    <div id="content__page-2">
+      <header class="header page__tag">Header</header>
+      <aside class="aside page__tag">Aside</aside>
+      <nav class="nav page__tag">Nav</nav>
+      <main class="main page__tag">Main</main>
+      <section class="section page__tag">Section</section>
+      <footer class="footer page__tag">Footer</footer>
     </div>
   </body>
 </html>
